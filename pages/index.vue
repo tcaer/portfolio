@@ -1,9 +1,12 @@
 <template>
   <main>
+    <hero />
     <section class='work'>
-      <PreviewWork 
-        v-for='work in works' :key='work.fields.slug' :title='work.fields.previewTitle' 
-        :summary='work.fields.shortDescription' :slug='work.fields.slug' />
+      <ul>
+        <PreviewWork 
+          v-for='work in works' :key='work.fields.slug' :title='work.fields.previewTitle' 
+          :summary='work.fields.shortDescription' :slug='work.fields.slug' />
+      </ul>
     </section>
   </main>
 </template>
@@ -29,6 +32,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss' scoped>
+.work {
+  padding: 0 4%;
+
+  ul {
+    padding: 0;
+  }
+}
 </style>
 
