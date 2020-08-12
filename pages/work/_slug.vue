@@ -1,8 +1,16 @@
 <script>
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { INLINES } from '@contentful/rich-text-types';
 import { createClient } from '../../plugins/contentful';
 
 const client = createClient();
+
+const renderOptions = {
+  renderNode: {
+    [INLINES.ASSET_HYPERLINK]: 
+      link => `<a target='_blank' href='${link.data.target.fields.file.url}'>${link.content[0].value}</a>`
+  }
+};
 
 export default {
   data() {
@@ -27,7 +35,7 @@ export default {
   },
   computed: {
     document: function() {
-      return documentToHtmlString(this.work.fields.info);
+      return documentToHtmlString(this.work.fields.info, renderOptions);
     }
   },
   head() {
