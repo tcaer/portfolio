@@ -2,7 +2,7 @@
   <main>
     <hero />
     <section class='work'>
-      <ul>
+      <ul v-if='works !== undefined'>
         <PreviewWork 
           v-for='work in works' :key='work.fields.slug' :title='work.fields.previewTitle' 
           :summary='work.fields.shortDescription' :slug='work.fields.slug' />
@@ -18,16 +18,14 @@ const client = createClient();
 
 export default {
   asyncData({env}) {
-    return Promise.all([
-      client.getEntries({
-        content_type: 'workShowcase',
-        order: '-fields.order'
-      })
-    ]).then(([entries]) => {
+    return client.getEntries({
+      content_type: 'workShowcase',
+      order: '-fields.order'
+    }).then(entries => {
       return {
         works: entries.items
       };
-    }).catch(console.error)
+    }).catch(console.error);
   }
 }
 </script>
