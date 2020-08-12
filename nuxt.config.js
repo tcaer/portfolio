@@ -1,9 +1,13 @@
 module.exports = {
+  env: {
+    CTF_SPACE_ID: process.env.CTF_SPACE_ID || '',
+    CTF_ACCESS_TOKEN: process.env.CTF_ACCESS_TOKEN || ''
+  },
   /*
   ** Headers of the page
   */
   head: {
-    title: 'portfolio',
+    title: 'Tino Caer',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -16,7 +20,12 @@ module.exports = {
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#3B8070' },
+  loading: { color: '#000' },
+  /*
+  ** Auto import components
+  ** See https://nuxtjs.org/api/configuration-components
+  */
+ components: true,
   /*
   ** Build configuration
   */

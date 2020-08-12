@@ -1,12 +1,9 @@
 <template>
   <main>
     <section class='work'>
-      <li class='line' v-for='work in works' :key='work.title'>
-        <NuxtLink :to="{name: 'work-slug', params: {slug: work.fields.slug}}" class='link'>
-          <span class='title'>{{ work.fields.title }}</span>
-          <span class='summary'>{{ work.fields.summary }}</span>
-        </NuxtLink>
-      </li>
+      <PreviewWork 
+        v-for='work in works' :key='work.fields.slug' :title='work.fields.previewTitle' 
+        :summary='work.fields.shortDescription' :slug='work.fields.slug' />
     </section>
   </main>
 </template>
@@ -20,10 +17,10 @@ export default {
   asyncData({env}) {
     return Promise.all([
       client.getEntries({
-        content_type: 'workShowcase'
+        content_type: 'workShowcase',
+        order: '-fields.order'
       })
     ]).then(([entries]) => {
-      console.log(entries.items)
       return {
         works: entries.items
       };
