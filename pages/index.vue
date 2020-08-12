@@ -17,8 +17,7 @@ export default {
         order: '-fields.order'
       }),
       client.getAsset('7bMVdLPniGISe5QpKqe38T')
-    ])
-      .then(([entries, resume]) => {
+    ]).then(([entries, resume]) => {
         return {
           works: entries.items,
           resumeLink: resume.fields.file.url
