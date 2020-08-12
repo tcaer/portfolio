@@ -1,34 +1,53 @@
-<template>
-  <main>
-    <hero />
-    <section class='work'>
-      <ul v-if='works !== undefined'>
-        <PreviewWork 
-          v-for='work in works' :key='work.fields.slug' :title='work.fields.previewTitle' 
-          :summary='work.fields.shortDescription' :slug='work.fields.slug' />
-      </ul>
-    </section>
-  </main>
-</template>
-
 <script>
 import { createClient } from '../plugins/contentful';
 
 const client = createClient();
 
 export default {
-  asyncData({env}) {
-    return client.getEntries({
-      content_type: 'workShowcase',
-      order: '-fields.order'
-    }).then(entries => {
-      return {
-        works: entries.items
-      };
-    }).catch(console.error);
+  data: function() {
+    return {
+      works: [],
+      resumeLink: ''
+    };
+  },
+  asyncData: function({env}) {
+    return Promise.all([
+      client.getEntries({
+        content_type: 'workShowcase',
+        order: '-fields.order'
+      }),
+      client.getAsset('7bMVdLPniGISe5QpKqe38T')
+    ])
+      .then(([entries, resume]) => {
+        return {
+          works: entries.items,
+          resumeLink: resume.fields.file.url
+        };
+      }).catch(console.error);
+  },
+  pageTransition: {
+    name: 'default',
+    mode: ''
+  },
+  head: {
+    titleTemplate: 'Tino Caer'
   }
 }
 </script>
+
+<template>
+  <main>
+    <hero />
+    <section class='work'>
+      <ul>
+        <PreviewWork 
+          v-for='work in works' :key='work.fields.slug' :title='work.fields.previewTitle' 
+          :summary='work.fields.shortDescription' :slug='work.fields.slug' />
+      </ul>
+    </section>
+    <Footer :resumeLink='resumeLink' />
+  </main>
+</template>
 
 <style lang='scss' scoped>
 .work {
