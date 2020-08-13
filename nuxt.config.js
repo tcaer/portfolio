@@ -14,7 +14,8 @@ module.exports = {
       { hid: 'description', name: 'description', content: "Tino Caer's personal website" }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap' }
     ]
   },
   /*

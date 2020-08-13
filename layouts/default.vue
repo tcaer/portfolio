@@ -5,8 +5,6 @@
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap');
-
 html, body {
   width: 100vw;
   background: #000;
