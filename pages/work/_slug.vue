@@ -113,9 +113,9 @@ export default {
           transition-delay: 0s;
         }
       }
-      @media only screen and (max-width: 670px) {
-        width: 100%;
-      }
+    }
+    @media only screen and (max-width: 670px) {
+      width: 100%;
     }
   }
 }

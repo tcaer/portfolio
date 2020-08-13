@@ -8,7 +8,7 @@ export default {
   mounted: function() {
     setTimeout(() => {
       this.playAnimation = true;
-    }, 1000);
+    }, 600);
   }
 }
 </script>
