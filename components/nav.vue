@@ -29,7 +29,7 @@ nav {
     }
   }
   @media screen and (max-width: 770px) {
-    padding: 8% 4% !important;
+    padding: 4% 4% !important;
   }
 }
 </style>
